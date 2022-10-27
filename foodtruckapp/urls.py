@@ -5,6 +5,7 @@ from . import views
 app_name = 'foodtruckapp'
 
 urlpatterns = [
-    path('display/', views.display, name='display')
+    path('display/', views.display, name='display'),
+    path('controller/', views.controller, name='controller'),
 
 ] 

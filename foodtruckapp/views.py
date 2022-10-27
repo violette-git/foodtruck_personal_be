@@ -9,3 +9,11 @@ def display(request):
 
     }
     return render(request, 'foodtruckapp/display.html', context)
+
+def controller(request):
+
+    context = {
+
+    }
+
+    return render(request, 'foodtruckapp/controller.html', context)
