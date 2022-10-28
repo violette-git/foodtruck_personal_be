@@ -1,6 +1,30 @@
+{% import static %}
 
-@import url('http://getbootstrap.com/dist/css/bootstrap.css');
+@font-face {
+    font-family: fontname;
+    src: url(HawaiianDreamsPersonalUse-L3Y75.ttf);
 
+}
+@font-face {
+    font-family: fontname2;
+    src: url(IndieFlower-Regular.ttf);
+
+}
+@font-face {
+    font-family: fontname3;
+    src: url(BebasNeue-Regular.ttf);
+
+}
+@font-face {
+    font-family: fontname5;
+    src: url(Dosis-VariableFont_wght.ttf);
+
+}
+@font-face {
+    font-family: fontname6;
+    src: url(VarelaRound-Regular.ttf);
+
+}
 #create {
     
     font-family: 'Teko', sans-serif;
@@ -213,11 +237,66 @@ body {
         order: 3;
     }
 }
+#name {
+    position:absolute;
+    left:12.6%;
+    top:30;
+    font-family: fontname6;
 
+}
+#name2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+    padding-top: 50px;
+    font-family:fontname;
+    font-size: 11vw;
+}
+#name3 {
+    position: absolute;
+    right: 12.8%;
+    top: 153;
+    font-family: fontname6;
+}
+#company-name{
+    width: 93vw;
+}
 
+#splash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/* colour1: #093649 blue dark
-colour2: #02567a blue light
-colour3: #b6510d burnt orange
-colour4: #e98607 orange
-colour5: #d7dfe1 white */
+.signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    /* border: 2px solid black; */
+    border-radius: 5px;
+}
+
+#testtt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* padding-bottom: 10px; */
+    
+}
+
+#ooooooo {
+    width: 20rem;
+    height:3rem;
+    border-radius: 10px;
+}
+
+#goof{
+    font-size: large;
+}
+
+#sign-body {
+    background-color: #ff80ff;
+}
