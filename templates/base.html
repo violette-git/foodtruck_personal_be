@@ -1,8 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
 
-<html lang="en"><head>
+<html lang="en">
+  <head>
   <meta charset="utf-8">
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/pig_logo-final.png' %}"/>
   <title>witness</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
@@ -13,46 +15,12 @@
 
   
   
-</head>
+  </head>
 
-<body>
-  {% include 'navbar.html' %}
-  <!-- Swiper -->
-  <div class="swiper mySwiper swiper-initialized swiper-vertical swiper-pointer-events swiper-backface-hidden">
-    <div class="swiper-wrapper" id="swiper-wrapper-3a1a443022699be1" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-      <div class="swiper-slide swiper-slide-active d-flex justify-content-center align-items-center"  role="group" aria-label="1 / 9" style="height: 534px; margin-bottom: 30px; background-color:#093649">
-        Slide 1
-      </div>
-      <div class="swiper-slide swiper-slide-next d-flex justify-content-center align-items-center" style="background-color:#093649" role="group" aria-label="2 / 9" style="height: 534px; margin-bottom: 30px;">
-        Slide 2
-      </div>
-      <div class="swiper-slide d-flex justify-content-center align-items-center" style="background-color:#093649" role="group" aria-label="3 / 9" style="height: 534px; margin-bottom: 30px;">
-        Slide 3
-      </div>
-      <div class="swiper-slide d-flex justify-content-center align-items-center" style="background-color:#093649" role="group" aria-label="4 / 9" style="height: 534px; margin-bottom: 30px;">
-        Slide 4
-      </div>
+  <body>
+    {% include 'navbar.html' %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
-    </div>
-    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-vertical"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 6"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 7"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 8"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 9"></span></div>
-  <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-
-  <!-- Swiper JS -->
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Initialize Swiper -->
-  <script>
-    var swiper = new Swiper(".mySwiper", {
-      direction: "vertical",
-      slidesPerView: 1,
-      spaceBetween: 0,
-      mousewheel: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-</body></html>
+  </body>
+</html>
