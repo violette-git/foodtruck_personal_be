@@ -7,5 +7,7 @@ app_name = 'foodtruckapp'
 urlpatterns = [
     path('display/', views.display, name='display'),
     path('controller/', views.controller, name='controller'),
+    path('whereami/', views.whereami, name='whereami'),
+
 
 ] 
