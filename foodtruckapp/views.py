@@ -6,7 +6,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 
 
-import lxml.html
 import requests
 import html
 

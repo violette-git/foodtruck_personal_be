@@ -29,19 +29,21 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# DEBUG = True
 
-if DEBUG:
+# if DEBUG:
 
-    key = 'DJANGO_SECRET_KEY_DEV'
+#     key = 'DJANGO_SECRET_KEY_DEV'
 
-else:
+# else:
 
-    key = 'DJANGO_SECRET_KEY_PRO'
+#     key = 'DJANGO_SECRET_KEY_PRO'
 
-SECRET_KEY = decouple.config(key)
+# SECRET_KEY = decouple.config(key)
+SECRET_KEY = 'nvKg(LjI0W=YmFvY5);q%1ew_/Hd=sBOed<qtc?l}s]fvQd'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '192.168.68.106', '127.0.0.1']
 
@@ -93,27 +95,27 @@ WSGI_APPLICATION = 'foodtruckpersonalbe.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('POSTGRES_NAME'),
-            'USER': os.environ.get('POSTGRES_USER'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-            'HOST': 'db',
-            'PORT': 5432,
-        }
+# if DEBUG:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': 5432,
     }
+}
 
-else:
+# else:
 
-    DATABASE_URL = decouple.config('DATABASE_URL')
+#     DATABASE_URL = decouple.config('DATABASE_URL')
 
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-    }
+#     DATABASES = {
+#         'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+#     }
 
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+#     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
