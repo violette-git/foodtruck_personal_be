@@ -27,6 +27,7 @@
         <div class="signin ">
             <form action="{% url 'user_app:login' %}" method="POST">
                 <h1 class="h3 mb-3 fw-normal pt-4 pb-3 text-center">Log in</h1>
+                {% if error %}<div class="alert alert-danger text-center" role="alert">{{ error }}</div>{% endif %}
                 <div id="testtt" class="text-center">
                     <input class='w-100 p-0 mb-2 text-center' id="ooooooo" type="text" name="username" placeholder="Username">
                     <input class='w-100 p-0 text-center' id="ooooooo" type="password" name="password" placeholder="Password" />

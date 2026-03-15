@@ -30,23 +30,12 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = False
-
-# if DEBUG:
-
-#     key = 'DJANGO_SECRET_KEY_DEV'
-
-# else:
-
-#     key = 'DJANGO_SECRET_KEY_PRO'
-
-# SECRET_KEY = decouple.config(key)
-SECRET_KEY = 'nvKg(LjI0W=YmFvY5);q%1ew_/Hd=sBOed<qtc?l}s]fvQd'
-
+SECRET_KEY = decouple.config('SECRET_KEY', default='nvKg(LjI0W=YmFvY5);q%1ew_/Hd=sBOed<qtc?l}s]fvQd')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = decouple.config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '192.168.68.106', '127.0.0.1']
+ALLOWED_HOSTS = decouple.config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=decouple.Csv())
 
 
 # Application definition
@@ -65,6 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -154,13 +144,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [str(BASE_DIR.joinpath("static")), os.path.join(BASE_DIR, 'static')] 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_app.User'
+
+django_heroku.settings(locals())
