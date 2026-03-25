@@ -5,3 +5,13 @@ data
 env
 /env
 env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Django
+db.sqlite3
+staticfiles/
+media/
