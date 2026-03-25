@@ -17,9 +17,19 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import os
 import decouple
-import psycopg2
-import dj_database_url
-import django_heroku
+try:
+    import psycopg2
+except ImportError:
+    pass
+try:
+    import dj_database_url
+except ImportError:
+    pass
+try:
+    import django_heroku
+    _django_heroku_available = True
+except ImportError:
+    _django_heroku_available = False
 from django.conf import settings
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,23 +40,12 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = False
-
-# if DEBUG:
-
-#     key = 'DJANGO_SECRET_KEY_DEV'
-
-# else:
-
-#     key = 'DJANGO_SECRET_KEY_PRO'
-
-# SECRET_KEY = decouple.config(key)
-SECRET_KEY = 'nvKg(LjI0W=YmFvY5);q%1ew_/Hd=sBOed<qtc?l}s]fvQd'
-
+SECRET_KEY = decouple.config('SECRET_KEY', default='nvKg(LjI0W=YmFvY5);q%1ew_/Hd=sBOed<qtc?l}s]fvQd')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = decouple.config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '192.168.68.106', '127.0.0.1']
+ALLOWED_HOSTS = decouple.config('ALLOWED_HOSTS', default='*', cast=decouple.Csv())
 
 
 # Application definition
@@ -65,6 +64,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,16 +97,24 @@ WSGI_APPLICATION = 'foodtruckpersonalbe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # if DEBUG:
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'db',
-        'PORT': 5432,
+if os.environ.get('POSTGRES_NAME'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('POSTGRES_NAME'),
+            'USER': os.environ.get('POSTGRES_USER'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+            'HOST': os.environ.get('POSTGRES_HOST', 'db'),
+            'PORT': 5432,
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # else:
 
@@ -154,13 +162,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [str(BASE_DIR.joinpath("static")), os.path.join(BASE_DIR, 'static')] 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_app.User'
+
+if _django_heroku_available:
+    django_heroku.settings(locals())

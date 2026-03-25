@@ -1,1 +1,1 @@
-web: gunincorn foodtruckpersonalbe.wsgi
+web: gunicorn foodtruckpersonalbe.wsgi
