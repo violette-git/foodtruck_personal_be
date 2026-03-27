@@ -1,22 +1,20 @@
-
-
-
-
-
-
-<footer class="container-fluid " id="foot">
+<footer class="container-fluid" id="foot">
     <div class="row">
-        <div class="col-12 mt-4 pt-0 d-flex justify-content-center align-items-center" order: 1>
-
+        <div class="col-12">
+            <div class="footer-links">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'user_app:logout' %}" class="footer-link">Logout</a>
+                {% endif %}
+                <a href="#" class="footer-link">Menu</a>
+                <a href="#" class="footer-link">Contact</a>
+                <a href="#" class="footer-link">About Us</a>
+                <a href="{% url 'foodtruckapp:whereami' %}" class="footer-link">Where Am I?</a>
+            </div>
         </div>
-        <div class="col-12 gap-5 pb-3 d-flex justify-content-around align-items-center" order: 2>
-            {% if request.user.is_authenticated %}
-            <a href="{% url 'user_app:logout' %}" class="link-light text-decoration-none" id="link">Logout</a>{% endif %}
-            <a href="#" class="link-dark text-decoration-none" id="link">Menu</a>
-            <a href="#" class="link-dark text-decoration-none" id="link">Contact</a>
-            <a href="#" class="link-dark text-decoration-none" id="link">About Us</a>
-            <a href="{% url 'foodtruckapp:whereami' %}" class="link-dark text-decoration-none" id="link">Where Am I?</a>
-
+        <div class="col-12">
+            <p class="footer-copyright">
+                &copy; {% now "Y" %} Not Quite Hawaiian Food Truck. All rights reserved.
+            </p>
         </div>
     </div>
 </footer>
